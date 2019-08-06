@@ -48,12 +48,11 @@ export function getNFT(tinlake: Tinlake, tokenId: string):
 
     dispatch({ type: LOAD });
 
-    console.log("TOKEN", tokenId)
     const nftOwnerPromise = tinlake.ownerOfNFT(tokenId);
-    const nftDataPromise = tinlake.getNFTData(tokenId);
+    // const nftDataPromise = tinlake.getNFTData(tokenId);
 
     let nftOwner: Address;
-    let nftData: any;
+    // let nftData: any;
 
     try {
       nftOwner = await nftOwnerPromise;
@@ -65,14 +64,14 @@ export function getNFT(tinlake: Tinlake, tokenId: string):
       return;
     }
 
-    try {
-      nftData = await nftDataPromise;
-    } catch (e) {
-      if (sequence !== mySequence) { return; }
-
-      console.error(`Could not get NFT data for NFT ID ${tokenId}`, e);
-      nftData = null;
-    }
+    // try {
+    //   nftData = await nftDataPromise;
+    // } catch (e) {
+    //   if (sequence !== mySequence) { return; }
+    //
+    //   console.error(`Could not get NFT data for NFT ID ${tokenId}`, e);
+    //   nftData = null;
+    // }
 
     if (sequence !== mySequence) { return; }
 
@@ -84,7 +83,7 @@ export function getNFT(tinlake: Tinlake, tokenId: string):
 
     const nft: NFT = {
       nftOwner,
-      nftData,
+      // nftData,
       tokenId: bnTokenId,
     };
 
