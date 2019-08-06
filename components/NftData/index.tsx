@@ -28,6 +28,7 @@ class NftData extends React.Component<Props> {
     // create empty boxes for layout purposes if nft data has != 4 entries
     const nftDataFillers = [...Array(nftDataFillersNeeded(nftDataFieldDefinitions.length)).keys()];
 
+
     return <NftDataContainer>
       <Heading level="6" margin="none">NFT Data</Heading>
       <Box direction="row" gap="medium" margin={{ bottom: 'large', top: 'medium' }}>
@@ -49,7 +50,7 @@ class NftData extends React.Component<Props> {
       <Box direction="row" gap="medium" margin={{ bottom: 'none', top: 'small' }}>
         {nftDataFieldDefinitions.map((fieldDef: FieldDefinition) =>
           <Box basis={'1/4'} gap="medium" key={fieldDef.key}>
-            <NftDataField fieldDefinition={fieldDef} value={nftData[fieldDef.key]} />
+            {/*<NftDataField fieldDefinition={fieldDef} value={nftData[fieldDef.key]} />*/}
           </Box>,
         )}
         {nftDataFillers.map(i => <Box key={i} basis={'1/4'} gap="medium" />)}

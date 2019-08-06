@@ -1,24 +1,32 @@
 [
   {
-    "key": "amount",
-    "label": "Mortgage Amount",
+    "key": "loan_size",
+    "label": "Loan Size",
     "type": "uint",
     "decimals": 18,
     "precision": 18,
     "suffix": " DAI"
   },
   {
-    "key": "asis_value",
-    "label": "As Is Value",
+    "key": "advance_rate",
+    "label": "Advance Rate",
+    "type": "bytes",
+    "decimals": 18,
+    "precision": 18,
+    "suffix": " DAI"
+  },
+  {
+    "key": "risk_rating",
+    "label": "Risk Rating",
     "type": "uint",
     "decimals": 18,
     "precision": 18,
     "suffix": " DAI"
   },
   {
-    "key": "rehab_value",
-    "label": "Rehab Value",
-    "type": "uint",
+    "key": "loan_maturity",
+    "label": "Loan Maturity Date",
+    "type": "bytes",
     "decimals": 18,
     "precision": 18,
     "suffix": " DAI"

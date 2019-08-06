@@ -48,6 +48,7 @@ export function getNFT(tinlake: Tinlake, tokenId: string):
 
     dispatch({ type: LOAD });
 
+    console.log("TOKEN", tokenId)
     const nftOwnerPromise = tinlake.ownerOfNFT(tokenId);
     const nftDataPromise = tinlake.getNFTData(tokenId);
 
