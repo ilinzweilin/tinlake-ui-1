@@ -14,10 +14,10 @@ interface Props {
 }
 
 interface NftData {
+  document_version: string;
   amount: string;
   asis_value: string;
   rehab_value: string;
-  document_version: string;
   loan_size: string;
   advance_rate: string;
   loan_maturity: string;
@@ -50,14 +50,14 @@ class NftData extends React.Component<Props> {
       </Box>
 
       <Paragraph>The following metadata was read from the NFT:</Paragraph>
-      <Box direction="row" gap="medium" margin={{ bottom: 'none', top: 'small' }}>
+      {/*<Box direction="row" gap="medium" margin={{ bottom: 'none', top: 'small' }}>*/}
         {/*{nftDataFieldDefinitions.map((fieldDef: FieldDefinition) =>*/}
           {/*<Box basis={'1/4'} gap="medium" key={fieldDef.key}>*/}
-            {/*/!*<NftDataField fieldDefinition={fieldDef} value={nftData[fieldDef.key]} />*!/*/}
+            {/*<NftDataField fieldDefinition={fieldDef} value={nftData[fieldDef.key]} />*/}
           {/*</Box>,*/}
         {/*)}*/}
         {/*{nftDataFillers.map(i => <Box key={i} basis={'1/4'} gap="medium" />)}*/}
-      </Box>
+      {/*</Box>*/}
     </NftDataContainer>;
   }
 }

@@ -10,7 +10,7 @@
   {
     "key": "advance_rate",
     "label": "Advance Rate",
-    "type": "bytes",
+    "type": "uint",
     "decimals": 18,
     "precision": 18,
     "suffix": " DAI"
@@ -26,7 +26,7 @@
   {
     "key": "loan_maturity",
     "label": "Loan Maturity Date",
-    "type": "bytes",
+    "type": "uint",
     "decimals": 18,
     "precision": 18,
     "suffix": " DAI"
