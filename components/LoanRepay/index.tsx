@@ -87,7 +87,7 @@ class LoanRepay extends React.Component<Props, State> {
       }
 
       // repay
-      const res1 = await tinlake.repay(loanId, repayAmount, ethFrom,
+      const res1 = await tinlake.repay(loanId, repayAmount,
                                        ethFrom);
 
       console.log('admit result');
