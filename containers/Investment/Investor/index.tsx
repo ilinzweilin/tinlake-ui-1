@@ -2,14 +2,13 @@ import * as React from 'react';
 import { AuthState } from '../../../ducks/auth';
 import { InvestorState, loadInvestor } from '../../../ducks/investments';
 import { connect } from 'react-redux';
-import { Box, Tab, Tabs, Text } from 'grommet';
+import { Box, Tab, Tabs } from 'grommet';
 import Alert from '../../../components/Alert';
 import { Spinner } from '@centrifuge/axis-spinner';
 import { isValidAddress } from '../../../utils/address';
 import TrancheView from '../Tranche';
 import { TransactionState, resetTransactionState } from '../../../ducks/transactions';
 import { PoolState, loadPool } from '../../../ducks/pool';
-
 
 interface Props {
   tinlake: any;
@@ -38,7 +37,6 @@ class InvestorView extends React.Component<Props, State> {
     tranche: null
   };
 
-  
   showInvestor = async () => {
     const { investorAddress } = this.props;
     const { loadInvestor, tinlake } = this.props;
@@ -99,8 +97,8 @@ class InvestorView extends React.Component<Props, State> {
         name: 'TIN'
       }
     };
-    var seniorTranche = pool?.data ? {...pool.data.senior,...{"tokenData":{...dropToken}}} : null;
-    var juniorTranche = pool?.data ? {...pool.data.junior,...{"tokenData":{...tinToken}}} : null;
+    const seniorTranche = pool?.data ? { ...pool.data.senior, ...{ tokenData:{ ...dropToken } } } : null;
+    const juniorTranche = pool?.data ? { ...pool.data.junior, ...{ tokenData:{ ...tinToken } } } : null;
     if (investorState && investorState === 'loading') {
       return <Spinner height={'calc(100vh - 89px - 84px)'} message={'Loading Investor information...'} />;
     }
@@ -120,14 +118,14 @@ class InvestorView extends React.Component<Props, State> {
             fontWeight: 900
           }}>
             <TrancheView tinlake={tinlake} transactions={transactions} auth={auth} investor={investor}
-              tranche={{...seniorTranche}}/>
+              tranche={{ ...seniorTranche }}/>
           </Tab>
           <Tab title="Junior tranche / TIN token" style={{
             flex: 1,
             fontWeight: 900
           }}
           ><span></span> {/* Hack to get tabs to work right */}
-            <TrancheView transactions={transactions} tinlake={tinlake} auth={auth} investor={investor} tranche={{...juniorTranche}} />
+            <TrancheView transactions={transactions} tinlake={tinlake} auth={auth} investor={investor} tranche={{ ...juniorTranche }} />
           </Tab>
         </Tabs>
       </Box>

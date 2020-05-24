@@ -324,6 +324,7 @@ export async function setMinJuniorRatio(tinlake: any, ratio: string) {
 }
 
 export async function supply(tinlake: any, supplyAmount: string, trancheType: TrancheType) {
+  console.log('amount', supplyAmount);
   // approve currency
   let approveRes;
   try {
@@ -358,6 +359,7 @@ export async function supply(tinlake: any, supplyAmount: string, trancheType: Tr
 export async function redeem(tinlake: any, redeemAmount: string, trancheType: TrancheType) {
   // approve junior token
   let approveRes;
+  console.log('redeem', redeemAmount);
   try {
     if (trancheType === 'junior') {
       approveRes = await tinlake.approveJuniorToken(redeemAmount);

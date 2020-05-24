@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Box, Heading } from 'grommet';
-import { Investor, Tranche } from 'tinlake';
+import { Investor } from 'tinlake';
 import { TrancheType } from '../../../services/tinlake/actions';
 import DashboardMetric from '../../DashboardMetric';
 import { Erc20Widget } from '../../../components/erc20-widget';
@@ -10,7 +10,6 @@ interface Props {
   investor: Investor;
   tranche: any;
   type: TrancheType;
-  tinlake: any;
 }
 
 class TrancheMetric extends React.Component<Props> {
@@ -18,7 +17,6 @@ class TrancheMetric extends React.Component<Props> {
   render() {
     const { type, investor, tranche } = this.props;
     const { maxSupply, maxRedeem, tokenBalance } = investor[type];
-
 
     return <Box margin="none">
       <Box>

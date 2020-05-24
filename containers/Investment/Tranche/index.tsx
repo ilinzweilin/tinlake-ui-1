@@ -11,7 +11,6 @@ import { TransactionState } from '../../../ducks/transactions';
 import { Investor } from 'tinlake';
 import { TrancheType } from '../../../services/tinlake/actions';
 
-
 interface Props {
   tinlake: any;
   auth: AuthState;
@@ -21,14 +20,13 @@ interface Props {
   tranche: any;
 }
 
-
 class TrancheView extends React.Component<Props> {
 
   render() {
     const { auth, investor, transactions, tranche, tinlake } = this.props;
-    const isAdmin = (tranche.type === 'junior') && auth.user && auth.user.permissions.canSetInvestorAllowanceJunior
-      || (tranche.type === 'senior') && auth.user && auth.user.permissions.canSetInvestorAllowanceSenior;
-    const isInvestor = (auth.user && investor) && (auth.user.address.toLowerCase() === investor.address.toLowerCase());
+    const isAdmin = (tranche.type === 'junior') && auth.permissions?.canSetInvestorAllowanceJunior
+      || (tranche.type === 'senior') && auth.permissions?.canSetInvestorAllowanceSenior;
+    const isInvestor = investor && (auth.address?.toLowerCase() === investor.address.toLowerCase());
     if (transactions && transactions.transactionState && transactions.transactionState === 'processing') {
       return <Spinner height={'calc(100vh - 89px - 84px)'} message={transactions.loadingMessage ||
         'Processing Transaction. This may take a fev seconds. Please wait...'} />;
@@ -59,7 +57,7 @@ class TrancheView extends React.Component<Props> {
           {isAdmin &&
             <Box margin={{ top: 'medium', bottom: 'large' }} >
               <Box>
-                <InvestorAllowance trancheType={tranche.type as any as TrancheType} tinlake={tinlake}
+                <InvestorAllowance tranche={tranche} tinlake={tinlake}
                   investor={investor} />
               </Box>
             </Box>

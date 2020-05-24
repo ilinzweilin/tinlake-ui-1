@@ -16,15 +16,15 @@ class PoolsMetrics extends React.Component<Props> {
       <PoolsMetric label="Ongoing Pools">
       <span>{pools.ongoingPools}</span>
       </PoolsMetric>
-      <PoolsMetric label="Outstanding Loans">
+      <PoolsMetric label="Total Ongoing Loans">
       <span>{pools.ongoingLoans}</span>
       </PoolsMetric>
       <PoolsMetric label="Total Outstanding Debt (DAI)">
-        <NumberDisplay suffix="" precision={4}
+        <NumberDisplay suffix="" precision={2}
                        value={baseToDisplay(pools.totalDebt, 18)} />
       </PoolsMetric>
       <PoolsMetric label="Total Repaid Debt (DAI)">
-        <NumberDisplay suffix="" precision={4}
+        <NumberDisplay suffix="" precision={2}
                        value={baseToDisplay(pools.totalRepaysAggregatedAmount, 18)} />
       </PoolsMetric>
     </Box>;

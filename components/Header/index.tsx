@@ -20,6 +20,7 @@ export interface MenuItem {
 }
 
 interface HeaderProps {
+  poolTitle?: string;
   selectedRoute: string;
   menuItems: MenuItem[];
   auth?: AuthState;
@@ -55,17 +56,17 @@ class Header extends React.Component<HeaderProps, State> {
   pushWithPrefixIfInPool = (item: MenuItem) => {
     if (item.inPool) {
       const { root } = this.props.router.query;
-      Router.push(`/[root]${item.route}`, `/${root}${item.route}`);
+      const route = item.route === '/' ? '' : item.route;
+      Router.push(`/[root]${route}`, `/${root}${route}`);
       return;
     }
     Router.push(item.route);
   }
 
   render() {
-    const { selectedRoute, menuItems, auth } = this.props;
-    const user = auth && auth.user;
-    const address = user && user.address;
-    const network = auth && auth.network;
+    const { poolTitle, selectedRoute, menuItems, auth } = this.props;
+    const address = auth?.address;
+    const network = auth?.network;
 
     const itemGap = 'small';
     const logoUrl = isDemo && '/static/demo_logo.svg' || '/static/logo.svg';
@@ -97,7 +98,9 @@ class Header extends React.Component<HeaderProps, State> {
             <Link href="/">
               <a title="Tinlake"><Image src={logoUrl} style={{ width: 130 }} /></a>
             </Link>
-            <Box fill={false} basis="full">
+            <Box margin={{ left: '80px', right: '56px' }} flex="grow" basis="auto"
+              style={{ fontSize: 16, fontWeight: 500 }}>{poolTitle}</Box>
+            <Box flex="grow" basis="auto">
               <NavBar
                 border={false}
                 theme={theme}
@@ -115,12 +118,12 @@ class Header extends React.Component<HeaderProps, State> {
             </Box>
           </Box>
           <Box direction="row" basis="full">
-            {!user &&
+            {!address &&
               <Box direction="column" align="end" basis="full" alignSelf="center">
                 <Button onClick={this.connectAccount} label="Connect" />
               </Box>
             }
-            {user &&
+            {address &&
               <Box direction="column" align="end" basis="full">
                 <Box direction="row" gap={itemGap} align="center" justify="start">
                   <Text> {formatAddress(address || '')} </Text>
@@ -142,13 +145,14 @@ class Header extends React.Component<HeaderProps, State> {
                 <a title="Tinlake"><Image src={logoUrl} style={{ width: 130 }} /></a>
               </Link>
             </Box>
+            <Box flex="grow" basis="auto" style={{ fontSize: 16, fontWeight: 500 }}>{poolTitle}</Box>
             <Box direction="row" basis="full" >
-            {!user &&
+            {!address &&
               <Box direction="column" align="end" basis="full" alignSelf="center">
                 <Button onClick={this.connectAccount} label="Connect" />
               </Box>
             }
-            {user &&
+            {address &&
             <Box direction="column" align="end" basis="full" alignSelf="center">
               <Box direction="row" gap={itemGap} align="center" justify="start">
                 <Text> {formatAddress(address || '')} </Text>

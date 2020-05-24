@@ -58,10 +58,10 @@ class InvestorRedeem extends React.Component<Props, State> {
     const limitOverflow = (new BN(redeemAmount).cmp(new BN(maxRedeemAmount)) > 0);
     const availableTokensOverflow = (new BN(redeemAmount).cmp(new BN(tokenBalance)) > 0);
     const redeemEnabled = redeemLimitSet && !limitOverflow && !availableTokensOverflow;
-    
+
     return <Box basis={'1/4'} gap="medium" margin={{ right: 'large' }}>
       <Box gap="medium">
-        <Erc20Widget input={true} fieldLabel="Redeem token" limit={BN.min(maxRedeemAmount,tokenBalance).toString()} tokenData={tranche.tokenData} precision={18} onValueChanged={(value : string) =>
+        <Erc20Widget input={true} fieldLabel="Redeem token" limit={BN.min(maxRedeemAmount, tokenBalance).toString()} tokenData={tranche.tokenData} precision={18} onValueChanged={(value : string) =>
                 this.setState({ redeemAmount: displayToBase(value, 18) })}
                 errorMessage="Max redeem amount exceeded" />
       </Box>
